@@ -1,0 +1,158 @@
+.conversation {
+  /* display: flex; */
+
+  padding: 15px 5px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  margin: 5px 0;
+  flex: 1;
+}
+body{
+  background: url("/backgroung.jpg") !important;
+  background-position: center !important;
+  background-size: cover !important;
+  /* backdrop-filter: blur(5px); */
+  /* opacity: 0.5; */
+}
+.leftbottomchat{
+  height: 80vh;
+}
+.leftbottomchat::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.convo-container {
+  display: grid;
+  grid-template-columns: 55px auto auto;
+  grid-template-rows: 25px 25px;
+  column-gap: 10px;
+  padding: 10px;
+}
+.convo-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: 1/1/3/2;
+  height: 50px;
+  width: 50px;
+  /* align-items: center; */
+  align-self: center;
+  justify-self: center;
+  background-color: blanchedalmond;
+  border-radius: 100px;
+}
+/* .convo-name{
+  grid-area:1/1/2/4 ;
+  display: flex;
+} */
+
+.convo-chats {
+  grid-area: 2/2/3/3;
+}
+.convo-time {
+  grid-area: 2/3/3/4;
+  justify-self: end;
+}
+
+
+
+
+
+.main-auth {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+.register {
+  /* background-color: rgba(12, 12, 12, 0.252); */
+  width: 400px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(1px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(181, 188, 200, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  /* border:  1px solid black; */
+}
+
+.regi-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* margin: 5px 5px; */
+}
+
+.auth-link {
+ text-decoration: none;
+ font-size: large;
+ /* text-shadow: #000000; */
+ font-weight: 500;
+ color: #000000;
+}
+.input-reg{
+  max-width:  240px;
+}
+.input-reg label {
+  color: rgb(0, 0, 0); /* Change this to your desired color */
+ }
+.input-reg label:focus + label {
+  color: rgb(255, 255, 255) !important; /* Change this to your desired color */
+ }
+.inp:focus  label{
+  color: red !important;
+}
+.admin-chip {
+  background-color: #a6ff00 !important; /* Example color for admin users */
+  color: #ffffff !important; /* Example text color for admin users */
+ }
+/* HTML: <div class="loader"></div> */
+.load{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.171);
+  backdrop-filter: blur(1px);
+  z-index: 99999;
+  position: fixed;
+  
+  
+}
+/* HTML: <div class="loader"></div> */
+.loader {
+  display: inline-flex;
+  gap: 10px;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  height: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side,#000 95%,#0000) 35% 35%/6px 6px no-repeat
+    #fff;
+  animation: l5 3s infinite;
+}
+@keyframes l5 {
+  0%,11%   {background-position:35% 35%}
+  14%,36%  {background-position:65% 35%}
+  38%,61%  {background-position:65% 65%}
+  64%,86%  {background-position:35% 65%}
+  88%,100% {background-position:35% 35%}
+}
