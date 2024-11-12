@@ -50,7 +50,9 @@ function Register() {
         
            <div  className=" input-reg flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
        
-          <Input type="name" variant="underlined" label="Name"   onChange={(e) => setName(e.target.value)}  value={name} />
+          <Input type="name" variant="underlined" label="Name"   onChange={(e) => setName(e.target.value)}  value={name} 
+          onFocus={(e) => e.target.parentElement.style.color = 'blue'} 
+          onBlur={(e) => e.target.style.color = ''} />
        
 
           <Input type="email" variant="underlined" label="Email"    onChange={(e) => setEmail(e.target.value)}

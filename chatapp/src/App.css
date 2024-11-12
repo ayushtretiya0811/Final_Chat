@@ -15,7 +15,7 @@ body{
 }
 .bg-img-login{
 
-  background: url("/backgroung.jpg") !important;
+  background: url("./assets/bg-log.jpg") !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
@@ -93,19 +93,16 @@ body{
 
 }
 .register {
-  /* background-color: rgba(12, 12, 12, 0.252); */
   width: 400px;
   height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(1px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(181, 188, 200, 0.75);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.125);
-  /* border:  1px solid black; */
+  background: rgba(255, 255, 255, 0.033); /* White blur for transparent glassmorphism effect */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px); /* Adds a blur effect to the background */
 }
 
 .regi-form {
@@ -126,8 +123,9 @@ body{
 .input-reg{
   max-width:  240px;
 }
+
 .input-reg label {
-  color: rgb(0, 0, 0); /* Change this to your desired color */
+  color: rgb(0, 0, 0) !important; /* Change this to your desired color */
  }
 .input-reg label:focus + label {
   color: rgb(255, 255, 255) !important; /* Change this to your desired color */
