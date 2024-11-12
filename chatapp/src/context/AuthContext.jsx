@@ -41,6 +41,7 @@ export const AuthProvider = ({ children }) => {
         console.log('User data to store:', user);
 console.log('Token to store:', token);
         setAuthToken(token);
+        toast.success('Registration successful');
         navigate('/login')// Throw an error if response or response.data is undefined
       } else {
         toast.error(response.data.message)

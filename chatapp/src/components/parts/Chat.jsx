@@ -122,7 +122,7 @@ useEffect(() => {
       chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
       hasScrolledToBottom.current = true; // Set to true after scrolling
     }
-  }, [messages, selectedUsers]);
+  }, [messages, newMessageReceived]);
 
 
 
@@ -147,6 +147,9 @@ useEffect(() => {
           <p className={`p-2 rounded ${m.sender?._id === logUser ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>
             {m.content}
           </p>
+          {/* {m.sender?._id !== logUser && (
+            <p className="font-bold ">{m.sender?.name}</p>
+          )} */}
         </div>
       ))}
        <div ref={chatEndRef} /> 
