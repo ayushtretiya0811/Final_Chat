@@ -22,6 +22,9 @@ export const ChatContextProvider = (props) => {
     
         socketInstance.on('connect', () => {
           console.log('Socket connected');
+          if (selectedUsers) {
+            socketInstance.emit('join room', selectedUsers._id); // Join the room when connected
+          }
         });
     
     
@@ -39,8 +42,14 @@ export const ChatContextProvider = (props) => {
           socketInstance.disconnect(); 
         
     }
-      },[selectedUsers]);
- 
+      },[newMessageReceived]);
+      useEffect(() => {
+        if (selectedUsers) {
+        
+            fetchMessages(); // Fetch messages whenever selectedUsers changes
+    // Clear messages if no selected user
+        }
+    }, [socket, newMessageReceived]);
       const fetchMessages = async () => {
         if (!selectedUsers || !selectedUsers._id) return;
         try {

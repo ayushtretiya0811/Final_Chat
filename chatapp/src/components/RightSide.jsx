@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import RightTop from './parts/RightTop'
 import Chat from './parts/Chat'
 import ChatInput from './parts/ChatInput'
@@ -6,9 +6,13 @@ import { chatContext } from '../context/chatContex';
 import { io } from 'socket.io-client';
 
 function RightSide() {
-  const {selectedUsers, setSelectedUsers} =  useContext(chatContext);
+  const { selectedUsers, setSelectedUsers, socket } = useContext(chatContext);
   // console.log(selectedUsers)
-
+  useEffect(() => {
+    if (selectedUsers) {
+        socket.emit('join room', selectedUsers._id); // Join the room when selectedUsers changes
+    }
+}, [selectedUsers, socket]);
   return (
  <>
 
@@ -17,7 +21,7 @@ function RightSide() {
       <div className="r-top">
         <RightTop/>
       </div>
-      <div className="r-mid  grow">
+      <div className="r-mid  grow overflow-y-auto "  style={{ maxHeight: 'calc(100vh - 200px)' }}>
         <Chat selectedUsers={selectedUsers}/>
       </div>
       <div className="r-input pb-2 ">

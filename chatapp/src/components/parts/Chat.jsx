@@ -8,10 +8,10 @@ import { isLastmessages, isSameSender } from '../Config/ChatConfig'
 import io from 'socket.io-client'
 
 const ENDPOINT = 'http://localhost:1000';
-let socket , selectedChatCompare;
+// let socket , selectedChatCompare;
 
 function Chat({selectedUsers}) {
-  const {  messages, fetchMessages, setMessages, newMessageReceived, setNewMessageReceived     } = useContext(chatContext)
+  const {  messages, fetchMessages, setMessages, newMessageReceived, setNewMessageReceived    , socket  } = useContext(chatContext)
 
   // const [messages, setMessages] = useState([]);
   const {user:loggedUser} = useContext(AuthContext)
@@ -50,21 +50,27 @@ function Chat({selectedUsers}) {
   //     socket.off('new message'); // Clean up the socket listener
   //   };
   // }, [setMessages, fetchMessages]);
-
   useEffect(() => {
-    if (selectedUsers && selectedUsers._id) {
-        fetchMessages();
-    }
-}, [selectedUsers, fetchMessages  ]);
+    const fetchChatMessages = async () => {
+      if (selectedUsers && selectedUsers._id) {
+        // Clear previous messages when selected user changes
+        // Clear messages for the new chat
+       
+        socket.emit('join room', selectedUsers._id); // Join the room when selectedUsers changes
+        await fetchMessages(); // Fetch messages for the new selected user
+      }
+    };
+
+    fetchChatMessages();
+  }, [ newMessageReceived]);
+
+
 
 useEffect(() => {
-    if (newMessageReceived) {
-      setNewMessageReceived(false); // Reset the new message received state
-        fetchMessages(); // Fetch messages when a new message is received
-    }
-}, [newMessageReceived, setNewMessageReceived]);
-
-
+  if(selectedUsers){
+    fetchMessages();
+  }
+},[selectedUsers])
 
 
   

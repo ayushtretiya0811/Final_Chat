@@ -10,7 +10,7 @@ function RightChat(
   return (
  <>
 {senderMessages.map((message) => (
-<div class="flex items-end  sm:max-w-xl justify-end mb-4">
+<div class="flex items-end  sm:max-w-xl justify-end mb-4"  key={message._id}>
 
   <div class="bg-blue-500 rounded-lg p-3 text-white">
 

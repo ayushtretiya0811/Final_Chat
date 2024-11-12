@@ -61,16 +61,28 @@ const io = new Server(server, {
 
 
 // });
+// io.on('connection', (socket) => {
+//   console.log('User connected:', socket.id);
+
+//   socket.on('new message', (data) => {
+//     console.log('New message received:', data);
+//     io.to(data.chatId).emit('new message', data); // Emit to the specific chat room
+//   });
+// });
+
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
+
+  socket.on('join room', (roomID) => {
+    socket.join(roomID);
+    console.log(`User ${socket.id} joined room ${roomID}`);
+  });
 
   socket.on('new message', (data) => {
     console.log('New message received:', data);
     io.to(data.chatId).emit('new message', data); // Emit to the specific chat room
   });
 });
-
-
 
 // io.on('connection', (socket) => {
 //   console.log('User connected:', socket.id);
