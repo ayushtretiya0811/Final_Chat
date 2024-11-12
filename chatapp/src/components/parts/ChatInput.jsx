@@ -4,11 +4,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { IoSend } from "react-icons/io5";
 import { io } from 'socket.io-client';
 import { chatContext } from '../../context/chatContex';
-function ChatInput({ selectedUsers  }) {
+function ChatInput({selectedUsers}) {
   const [message, setMessage] = useState('');
   // const ENDPOINT = 'http://localhost:1000';
 
-const {fetchMessages ,socket , setMessages, setNewMessageReceived } = useContext(chatContext)
+const {fetchMessages ,socket , setMessages, setNewMessageReceived , newMessageReceived} = useContext(chatContext)
 
   const sendMessage = async () => {
     if (!message || !selectedUsers) return;
@@ -40,6 +40,9 @@ const {fetchMessages ,socket , setMessages, setNewMessageReceived } = useContext
       console.error('Failed to send message:', error);
     }
   };
+  useEffect(() => {
+    fetchMessages();
+  },[newMessageReceived , selectedUsers]);
   return (
 <>
 

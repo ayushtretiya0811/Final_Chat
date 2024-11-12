@@ -41,11 +41,11 @@ function Register() {
 
     {loading && <Loading />}
    </div>
-   <div className="main-auth">
-    <div className="register">
-        <h1>Register</h1>
+   <div className="main-auth bg-img-login">
+    <div className="register ">
+        <h1 className='text-2xl font-bold p-2  '>Registration</h1>
             <form onSubmit={SubmitRegister}>
-        <div className="regi-form">
+        <div className="regi-form ">
 
         
            <div  className=" input-reg flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
@@ -64,11 +64,11 @@ function Register() {
         </div>
        
         {/* <button> */}
-        <button type='submit' className='reg-from-input auth-button' variant="contained" color="success" 
+        <button type='submit' className='reg-from-input auth-button p-8' variant="contained" color="success" 
        
        >
-<Fingerprint/>
-        Register
+<Fingerprint  sx={{ fontSize: 40 , ":hover": { color: "green"}  } }  />
+    <span className="ms-2">Register</span>
        </button>
    
         {/* </button> */}
@@ -76,8 +76,11 @@ function Register() {
         
            </div>
        </form>
+       <div className='flex space-x-3 text-center justify-center items-center'>
+
         <p>Already have an account?</p>
-        <Link to="/login"  >Login</Link>
+        <Link to="/login" className='text-md font-bold'  >Login</Link>
+       </div>
     </div>
    </div>
 

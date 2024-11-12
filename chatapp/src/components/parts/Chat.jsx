@@ -11,18 +11,18 @@ const ENDPOINT = 'http://localhost:1000';
 // let socket , selectedChatCompare;
 
 function Chat({selectedUsers}) {
-  const {  messages, fetchMessages, setMessages, newMessageReceived, setNewMessageReceived    , socket  } = useContext(chatContext)
+  const {  messages , fetchMessages, setMessages, newMessageReceived, setNewMessageReceived    , socket  } = useContext(chatContext)
 
   // const [messages, setMessages] = useState([]);
   const {user:loggedUser} = useContext(AuthContext)
   const [socketConnected , setSocketConnected] = useState(false)
- 
+  const hasScrolledToBottom = useRef(false); 
   // const [roomID, setRoomID] = useState(null);
   const logUser = loggedUser.id
   console.log("logged user id",logUser)
   const selID =selectedUsers._id 
   console.log("selected id" ,selID)
-  
+  const chatEndRef = useRef(null);
 
   // Initialize socket state
   // useEffect(() => {
@@ -61,16 +61,16 @@ function Chat({selectedUsers}) {
       }
     };
 
-    fetchChatMessages();
-  }, [ newMessageReceived]);
+     fetchChatMessages();
+  }, [ newMessageReceived , selectedUsers]);
 
 
 
 useEffect(() => {
-  if(selectedUsers){
+  if(selectedUsers && selectedUsers._id){
     fetchMessages();
   }
-},[selectedUsers])
+},[selectedUsers , fetchMessages , newMessageReceived]);
 
 
   
@@ -117,8 +117,12 @@ useEffect(() => {
 
 
 
- 
-
+  useEffect(() => {
+    if (chatEndRef.current && !hasScrolledToBottom.current) {
+      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+      hasScrolledToBottom.current = true; // Set to true after scrolling
+    }
+  }, [messages, selectedUsers]);
 
 
 
@@ -136,13 +140,20 @@ useEffect(() => {
     </div> */}
 
 
-    {
-      messages?.map((m, i) =>(
-        <div key={m._id} className={`flex items-baseline ${m.sender?._id === logUser ? 'justify-end' : 'justify-start'} mb-2`}>
-        <p className={`p-2 rounded ${m.sender?._id === logUser ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>{m.content}</p>
-      </div>
-      ))
-    }
+
+
+      {messages?.map((m , i) => (
+        <div key={m._id} className={`flex items-baseline mb-2 ${m.sender?._id === logUser ? 'justify-end' : 'justify-start'}`}>
+          <p className={`p-2 rounded ${m.sender?._id === logUser ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>
+            {m.content}
+          </p>
+        </div>
+      ))}
+       <div ref={chatEndRef} /> 
+      {/* <div ref={chatEndRef} /> This div will be used to scroll to the bottom */}
+  
+        {/* This div will be used to scroll to the bottom */}
+   
     {/* {messages.map((m, i) =>(
 
           

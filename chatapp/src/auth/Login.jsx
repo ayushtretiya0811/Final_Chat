@@ -39,9 +39,9 @@ function Login() {
       {loading && <Loading />}
       {/* Your login/register form here */}
     </div>
-    <div className="main-auth">
+    <div className="main-auth bg-img-login">
     <div className="register">
-        <h1>Login</h1>
+        <h1 className='text-4xl font-bold p-2  uppercase'>Login</h1>
        <form onSubmit={SubmitLogin}>
         <div className="regi-form">
 
@@ -62,7 +62,7 @@ function Login() {
     value={password} />
      </div>
       <button className='p-5' aria-label="fingerprint" type='submit' color="success">
-      <Fingerprint/>
+      <Fingerprint sx={{ fontSize: 40 , ":hover": { color: "green"}  } }/>
 
 </button>
  {/* </button> */}
@@ -71,8 +71,11 @@ function Login() {
         
            </div>
  </form>
+ <div className='flex space-x-3 text-center justify-center items-center'>
+
         <p>Don't have an account?</p>
-        <Link to="/" className="auth-link" >Register</Link>
+        <Link to="/" className="auth-link text-md  " >Register</Link>
+ </div>
     </div>
    </div>
 

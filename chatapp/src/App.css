@@ -8,12 +8,32 @@
   flex: 1;
 }
 body{
-  background: url("/backgroung.jpg") !important;
   background-position: center !important;
   background-size: cover !important;
   /* backdrop-filter: blur(5px); */
   /* opacity: 0.5; */
 }
+.bg-img-login{
+
+  background: url("/backgroung.jpg") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+.bg-img-chat{
+  background : url("./assets/chat-img-bg.jpg");
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+.bg-no-chat-selected{
+
+  background : url("./assets/n-select-chat.jpg");
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
 .leftbottomchat{
   height: 80vh;
 }

@@ -4,9 +4,10 @@ import { chatContext } from '../../context/chatContex';
 import { getSender, getSenderFull } from '../Config/ChatConfig';
 import { AuthContext } from '../../context/AuthContext';
 import ProfileModal from './ProfileModal';
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 function RightTop() {
-  const { selectedUsers } = useContext(chatContext);
+  const { selectedUsers , setSelectedUsers } = useContext(chatContext);
   const {user:loggedUser} = useContext(AuthContext)
   const displayName = !selectedUsers.isGroupChat ? getSender(loggedUser, selectedUsers.users) : selectedUsers.chatname;
   const oppositeUser  = getSenderFull(loggedUser , selectedUsers.users)
@@ -14,11 +15,14 @@ function RightTop() {
   console.log('Oposite User:', oppositeUser);
 console.log('Users in Conversation:', selectedUsers.users);
 console.log("selecteduser in profile modal", selectedUsers)
+const handleBackButtonClick = () => {
+  setSelectedUsers(null); // Clear selected user
+};
   return (
    <>
    <div className="chat-top rounded-2xl  bg-slate-300">
 
-   <div className="container text-center  p-4 flex  justify-between ">
+   <div className="container text-center  p-4 flex  justify-between items-center ">
     <div className="user-profile-left items-center flex">
       <ProfileModal user={oppositeUser } isGroupChat={selectedUsers.isGroupChat} >
 
@@ -29,6 +33,9 @@ console.log("selecteduser in profile modal", selectedUsers)
     <p className="font-bold ">{displayName}</p>
     <p className="text-xs">Online</p>
     </div>
+    </div>
+    <div className='text-2xl' >
+    <RiArrowGoBackFill onClick={handleBackButtonClick} />
     </div>
    </div>
 
